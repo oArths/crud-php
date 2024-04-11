@@ -23,10 +23,12 @@
             <div class="col">
             <h1>Cadastro!</h1>
             <nav class="navbar navbar-light bg-light">
-            <form class="form-inline" action="pesquisa.php" method="POST">
-                <input class="form-control mr-sm-2" type="search" placeholder="Nome" aria-label="Search" name="busca" autofocus>
+              <div class="container-fluid">
+            <form class="d-flex" action="pesquisa.php" method="POST">
+                <input class="form-control me-2" type="search" placeholder="Nome" aria-label="Search" name="busca" autofocus>
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
             </form>
+            </div>
             </nav>
             <table class="table table-hover">
                 <thead>
@@ -57,8 +59,11 @@
                        <td>$email</td>
                        <td>$data_nascimento</td>
                        <td>
-                       <a href='cadastro_edit.php? id=$cod_pessoa'  class='btn btn-danger'>Editar</a>
-                       <a href='cadastro_edit.php? id=$cod_pessoa' class='btn btn-success'>Excluir</a>
+                       <a href='cadastro_edit.php? id=$cod_pessoa'  class='btn btn-success'>Editar</a>
+                       <a href='#' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#confirma'
+                       onClick=" . '"' . "pegar_dados($cod_pessoa, '$nome')" . '"' . "
+                       >Excluir</a>
+
                        
                        </td>
                        </tr>";
@@ -72,6 +77,39 @@
             </div>
         </div>
     </div>
+    <!-- Modal -->
+        <div class="modal fade" id="confirma" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmação de Exclusão</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form  action="excluir_script.php" method="POST">
+                <P>Deseja realmente exlcuir <b id="nome_pessoa">Nome da pessoa </b>?</P>
+            </div>
+              <div class="modal-footer">
+                <button  aria-label="Close" class="btn btn-secondary" data-dismiss="modal">Não</button>
+                <input type="hidden" name="nome" id="nome_pessoa_1" value="">
+                <input type="hidden" name="id" id="cod_pessoa" value="">
+                <input type="submit" class="btn btn-danger"value="Sim"/>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script type="text/javascript">
+          function pegar_dados(id, nome){
+            document.getElementById('nome_pessoa').innerHTML = nome;
+            document.getElementById('nome_pessoa_1').value = nome;
+            document.getElementById('cod_pessoa').value = id;
+          }
+
+        </script>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>
