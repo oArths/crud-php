@@ -87,7 +87,7 @@
               </div>
               <div class="modal-body">
                 <form  action="excluir_script.php" method="POST">
-                <P>Deseja realmente exlcuir <b id="nome_pessoa">Nome da pessoa </b>?</P>
+                <P>Deseja realmente exlcuir <b id="nome_pessoa">Nome da pessoaaaaa </b>?</P>
             </div>
               <div class="modal-footer">
                 <button  aria-label="Close" class="btn btn-secondary" data-dismiss="modal">Não</button>
