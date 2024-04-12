@@ -4,23 +4,42 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Empresa</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="restrito/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
     <div class="container"> 
         <div class="row">
-            <div class="col">
-            <div class="jumbotron">
-                <h1 class="display-4">Castrastro</h1>
-                <p class="lead">Esse é um sistema simplificado de cadastro, Base de estudo para a criação de sistemas Web com PHP e MYSQL</p>
-                <hr class="my-4">
-                <p>Acessar funções</p>
-                <p class="lead">
-                    <a class="btn btn-primary btn-lg" href="cadastro.php" role="button">Cadastro</a>
-                    <a class="btn btn-primary btn-lg" href="pesquisa.php" role="button">Pesquisa</a>
-                </p>
+            <div class="col-3"></div>
+            <div class="col-6 ">
+            <div class="jumbotron bg-body-tertiary p-5 ">
+                <h1 class="display-4">Login</h1>
+                <form action="index.php" method="POST">
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email </label>
+                    <input type="text" class="form-control" name="login" id="login" aria-describedby="emailHelp">
+                    <div name="login" class="form-text">Entre com seus dados de acesso</div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Senha</label>
+                    <input type="password" class="form-control" name="senha" >
+                  </div>
+                  <button type="submit" class="btn btn-primary">Acessar</button>
+                </form>
+                <?php
+                if(isset($_POST['login'])){
+                  $login = $_POST['login'];
+                  $senha = $_POST['senha'];
+                  if(($login == "admin") and ($senha == "admin")){
+                    header("location: restrito");
+                  }else{
+                    echo"Login invalido";
+                  }
+                }
+                ?>
                 </div>
-            </div>
+                <div class="col-3"></div>
+
+              </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
