@@ -29,11 +29,31 @@
                 if(isset($_POST['login'])){
                   $login = $_POST['login'];
                   $senha = $_POST['senha'];
-                  if(($login == "admin") and ($senha == "admin")){
-                    header("location: restrito");
+                  
+                  include "restrito/conexcao.php";
+
+                  $slq = "SELECT * FROM `usuarios` WHERE login = '$login' and senha = '$senha'";
+
+                 if($result = mysqli_query($conn, $slq)){
+                  $num_registros = mysqli_num_rows($result);
+                  if($num_registros == 1){
+                    $linha = mysqli_fetch_assoc($result);
+
+                    
+                    if(($login == $login['login']) and ($senha == $senha['senha'])){
+                      session_start();
+                      $_SESSION['login'] = "Robson";
+                      header("location: restrito");
+                    }else{
+                      echo"Login invalido";
+                    }
+
                   }else{
-                    echo"Login invalido";
+                    echo "Login ou senha não encontrados ou invalidos";
                   }
+                 }else{echo "nenhum resiltado";}
+
+                 
                 }
                 ?>
                 </div>
